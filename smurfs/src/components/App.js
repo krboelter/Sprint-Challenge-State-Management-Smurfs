@@ -16,7 +16,6 @@ function App(props) {
     e.preventDefault()
     props.postSmurf({name: name, age: age, height: height});
 
-    window.location.reload()
   }
 
   return (
