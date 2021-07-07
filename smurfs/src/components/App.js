@@ -8,34 +8,22 @@ import NewSmurf from "./NewSmurf";
 
 function App(props) {
 
-  // const [newSmurf, setNewSmurf] = useState({name: "", age: 0, height: "", id: Date.now()})
-  const [name, setName] = useState("")
-  const [age, setAge] = useState(0)
-  const [height, setHeight] = useState("")
-  const [id, setId] = useState(Date.now())
-
   useEffect(() => {
     props.fetchSmurfs()
   }, [])
 
-  function handleChange(e) {
-    setName(e.target.value)
-    setAge(e.target.value)
-    setHeight(e.target.value)
-  }
-
-  function handleSubmit(e) {
+  function handleSubmit(e, name, age, height) {
     e.preventDefault()
-    props.postSmurf({name, age, height})
+    props.postSmurf({name: name, age: age, height: height});
+
   }
-  console.log(name, "NEW SMURF NAME")
 
   return (
-    <div>
+    <div className="App">
       <div>
         <h1>Create your own smurf!</h1>
         <br/>
-        <NewSmurf nameValue={name} ageValue={age} heightValue={height} handleSubmit={handleSubmit} setName={setName} setAge={setAge} setHeight={setHeight} />
+        <NewSmurf handleSubmit={handleSubmit} />
       </div>
       <SmurfList smurfs={props.smurfs} />
     </div>
